@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="moonlight">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M Sharath Kumar | Data Intelligence & Engineering</title>
-    <meta name="description" content="Official portfolio of M Sharath Kumar — Data Engineering, Machine Learning, and AI Systems.">
-    
+    <meta name="description"
+        content="Official portfolio of M Sharath Kumar — Data Engineering, Machine Learning, and AI Systems. Premium 3D immersive experience.">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+
 <body>
 
     <!-- Page Loader -->
     <div id="loader">
         <div class="loader-inner">
             <div class="loader-text">SK</div>
-            <div class="loader-bar"><div class="loader-fill"></div></div>
+            <div class="loader-bar">
+                <div class="loader-fill"></div>
+            </div>
         </div>
     </div>
 
@@ -27,12 +34,16 @@
 
     <!-- Ambient Background -->
     <div class="ambient-wrapper">
+        <div class="divine-rays"></div>
+        <div class="stars-layer" id="starsLayer"></div>
+        <div class="celestial-orb"></div>
         <canvas id="hero-canvas"></canvas>
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
         <div class="gradient-orb orb-3"></div>
     </div>
     <div class="noise-texture"></div>
+    <div class="theme-flash" id="themeFlash"></div>
 
     <!-- Navigation -->
     <nav id="main-nav">
@@ -45,35 +56,86 @@
                 <a href="#about" class="nav-link" data-index="01">About</a>
                 <a href="#projects" class="nav-link" data-index="02">Work</a>
                 <a href="#contact" class="nav-link" data-index="03">Contact</a>
+                <div class="nav-pill"></div>
+            </div>
+            <div class="nav-hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#projects" class="mobile-link">Work</a>
+        <a href="#contact" class="mobile-link">Contact</a>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher-container">
+        <div class="theme-switcher" id="themeSwitcher" title="Toggle Theme">
+            <div class="theme-icons">
+                <span class="theme-icon icon-sun">☀</span>
+                <span class="theme-icon icon-moon">☽</span>
+            </div>
+            <div class="theme-knob"></div>
+        </div>
+    </div>
 
     <main>
 
         <!-- ═══════════════ HERO ═══════════════ -->
         <section class="hero" id="home">
             <div class="hero-content">
-                <div class="hero-badge reveal" data-delay="0">
+                <div class="hero-badge">
                     <span class="badge-pulse"></span>
                     Available for AI & Data Roles
                 </div>
-                <h1 class="hero-title reveal" data-delay="100">
-                    <span class="line">Engineering</span>
-                    <span class="line dim">Intelligence<span class="blink">_</span></span>
+                <h1 class="hero-title" id="hero-title">
+                    <span class="line" data-text="Engineering">Engineering</span>
+                    <span class="line dim" data-text="Intelligence_">Intelligence<span class="blink">_</span></span>
                 </h1>
-                <p class="hero-desc reveal" data-delay="200">
-                    Aspiring Data Engineer turning complex raw information into scalable insights. Currently architecting my path through MCA and high-end ML systems.
+                <p class="hero-desc">
+                    Aspiring Data Engineer turning complex raw information into scalable insights. Currently
+                    architecting my path through MCA and high-end ML systems.
                 </p>
-                <div class="hero-cta reveal" data-delay="300">
-                    <a href="#projects" class="btn-primary" id="explore-btn">
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="5">0</span>
+                        <span class="stat-label">Projects Built</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="3">0</span>
+                        <span class="stat-label">ML Models</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">MCA</span>
+                        <span class="stat-label">Current Degree</span>
+                    </div>
+                </div>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn-primary magnetic" id="explore-btn">
                         <span>Explore Work</span>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="7" y1="17" x2="17" y2="7" />
+                            <polyline points="7 7 17 7 17 17" />
+                        </svg>
                     </a>
-                    <a href="#contact" class="btn-ghost" id="contact-btn">Get in Touch</a>
+                    <a href="#contact" class="btn-ghost magnetic" id="contact-btn">Get in Touch</a>
                 </div>
             </div>
-            <div class="hero-scroll-hint reveal" data-delay="500">
+
+            <!-- Floating 3D Shapes -->
+            <div class="hero-shapes">
+                <div class="hero-shape shape-1"></div>
+                <div class="hero-shape shape-2"></div>
+                <div class="hero-shape shape-3"></div>
+            </div>
+
+            <div class="hero-scroll-hint">
                 <div class="scroll-line"></div>
                 <span>Scroll</span>
             </div>
@@ -88,19 +150,21 @@
 
             <div class="bento-grid">
                 <!-- Overview Card -->
-                <div class="bento-card bento-wide reveal" data-delay="0">
+                <div class="bento-card bento-wide reveal" data-delay="0" data-tilt>
                     <div class="card-label">Overview</div>
                     <p class="card-body-text">
-                        I am currently pursuing a <strong>Masters in Computer Applications</strong>, specializing deeply in <strong>Data Engineering</strong> and Applied Artificial Intelligence. 
-                        My objective is to build the <strong>backbone</strong> of modern intelligence: robust pipelines, scalable architectures, and efficient models.
+                        I am currently pursuing a <strong>Masters in Computer Applications</strong>, specializing deeply
+                        in <strong>Data Engineering</strong> and Applied Artificial Intelligence.
+                        My objective is to build the <strong>backbone</strong> of modern intelligence: robust pipelines,
+                        scalable architectures, and efficient models.
                     </p>
                     <div class="card-accent-line"></div>
                 </div>
 
                 <!-- Skills Card -->
-                <div class="bento-card bento-narrow reveal" data-delay="100">
+                <div class="bento-card bento-narrow reveal" data-delay="100" data-tilt>
                     <div class="card-label">Capabilities</div>
-                    <div class="skill-list">
+                    <div class="skill-list reveal-stagger">
                         <div class="skill-item">
                             <span class="skill-name">Python</span>
                             <span class="skill-tag">Core</span>
@@ -124,8 +188,8 @@
                     </div>
                 </div>
 
-                <!-- Identity Card — ABSTRACT, NO IMAGE -->
-                <div class="bento-card bento-narrow bento-identity reveal" data-delay="200">
+                <!-- Identity Card -->
+                <div class="bento-card bento-narrow bento-identity reveal" data-delay="200" data-tilt>
                     <div class="card-label">Identity</div>
                     <div class="identity-visual">
                         <div class="identity-glyph">SK</div>
@@ -140,7 +204,7 @@
                 </div>
 
                 <!-- Academic Timeline -->
-                <div class="bento-card bento-wide reveal" data-delay="300">
+                <div class="bento-card bento-wide reveal" data-delay="300" data-tilt>
                     <div class="card-label">Academic Trajectory</div>
                     <div class="timeline">
                         <div class="timeline-item">
@@ -149,7 +213,8 @@
                                 <span class="timeline-year">2024 — Present</span>
                                 <h3 class="timeline-title">Masters in Computer Applications</h3>
                                 <p class="timeline-subtitle">Specializing in Data & AI</p>
-                                <p class="timeline-desc">Architecting expertise in distributed systems, advanced database theory, and neural network optimization.</p>
+                                <p class="timeline-desc">Architecting expertise in distributed systems, advanced
+                                    database theory, and neural network optimization.</p>
                             </div>
                         </div>
                         <div class="timeline-item">
@@ -158,7 +223,8 @@
                                 <span class="timeline-year">2021 — 2024</span>
                                 <h3 class="timeline-title">Bachelor's Degree</h3>
                                 <p class="timeline-subtitle">KCD Dharwad</p>
-                                <p class="timeline-desc">Foundational computer science, logic systems, and algorithmic development.</p>
+                                <p class="timeline-desc">Foundational computer science, logic systems, and algorithmic
+                                    development.</p>
                             </div>
                         </div>
                     </div>
@@ -190,108 +256,194 @@
             </div>
         </section>
 
-        <!-- ═══════════════ PROJECTS ═══════════════ -->
+        <!-- ═══════════════ PROJECTS — 3D CAROUSEL ═══════════════ -->
         <section id="projects" class="section">
             <div class="section-header reveal">
                 <span class="section-index">02</span>
                 <h2 class="section-title">Selected<br>Works</h2>
             </div>
 
-            <div class="project-grid">
-                <article class="project-card reveal" data-delay="0" data-color="violet">
-                    <div class="project-visual">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><path d="M12 24h24M24 12v24M16 16l16 16M32 16L16 32"/></svg>
-                        </div>
-                        <div class="project-number">01</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Ingestion Engine</h3>
-                        <p class="project-desc">Real-time data processing pipeline for high-throughput event streaming with fault-tolerant architecture.</p>
-                        <div class="project-tags">
-                            <span>Python</span><span>Kafka</span><span>Spark</span>
-                        </div>
-                    </div>
-                    <div class="project-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                </article>
+            <div class="carousel-wrapper reveal-scale">
+                <div class="carousel-scene" id="carousel-scene">
+                    <div class="carousel-slider" id="carousel-slider" style="--quantity: 5">
 
-                <article class="project-card reveal" data-delay="100" data-color="blue">
-                    <div class="project-visual">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="8" width="32" height="32" rx="4"/><path d="M8 20h32M20 20v20"/></svg>
+                        <!-- Project 1 -->
+                        <div class="carousel-item" style="--position: 1" data-color="violet">
+                            <div class="carousel-top">
+                                <div class="carousel-icon">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="24" cy="24" r="18" />
+                                        <path d="M12 24h24M24 12v24M16 16l16 16M32 16L16 32" />
+                                    </svg>
+                                </div>
+                                <div class="carousel-number">01</div>
+                            </div>
+                            <div class="carousel-body">
+                                <h3 class="carousel-title">Ingestion Engine</h3>
+                                <p class="carousel-desc">Real-time data processing pipeline for high-throughput event
+                                    streaming with fault-tolerant architecture.</p>
+                            </div>
+                            <div class="carousel-footer">
+                                <div class="carousel-tags">
+                                    <span>Python</span><span>Kafka</span><span>Spark</span>
+                                </div>
+                                <div class="carousel-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-number">02</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Latency Model</h3>
-                        <p class="project-desc">Predictive analytics system for network latency optimization using ensemble methods and time-series forecasting.</p>
-                        <div class="project-tags">
-                            <span>TensorFlow</span><span>Pandas</span><span>LSTM</span>
-                        </div>
-                    </div>
-                    <div class="project-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                </article>
 
-                <article class="project-card reveal" data-delay="200" data-color="emerald">
-                    <div class="project-visual">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 6v36M6 24h36"/><circle cx="24" cy="24" r="8"/><circle cx="24" cy="24" r="16"/></svg>
+                        <!-- Project 2 -->
+                        <div class="carousel-item" style="--position: 2" data-color="blue">
+                            <div class="carousel-top">
+                                <div class="carousel-icon">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="8" y="8" width="32" height="32" rx="4" />
+                                        <path d="M8 20h32M20 20v20" />
+                                    </svg>
+                                </div>
+                                <div class="carousel-number">02</div>
+                            </div>
+                            <div class="carousel-body">
+                                <h3 class="carousel-title">Latency Model</h3>
+                                <p class="carousel-desc">Predictive analytics system for network latency optimization
+                                    using ensemble methods and time-series forecasting.</p>
+                            </div>
+                            <div class="carousel-footer">
+                                <div class="carousel-tags">
+                                    <span>TensorFlow</span><span>Pandas</span><span>LSTM</span>
+                                </div>
+                                <div class="carousel-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-number">03</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">API Core</h3>
-                        <p class="project-desc">RESTful architectural backend with rate limiting, JWT auth, and auto-scaling microservices orchestration.</p>
-                        <div class="project-tags">
-                            <span>Node.js</span><span>Docker</span><span>Redis</span>
-                        </div>
-                    </div>
-                    <div class="project-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                </article>
 
-                <article class="project-card reveal" data-delay="300" data-color="amber">
-                    <div class="project-visual">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 8l20 0M8 16l32 0M14 24l20 0M8 32l32 0M14 40l20 0"/></svg>
+                        <!-- Project 3 -->
+                        <div class="carousel-item" style="--position: 3" data-color="emerald">
+                            <div class="carousel-top">
+                                <div class="carousel-icon">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M24 6v36M6 24h36" />
+                                        <circle cx="24" cy="24" r="8" />
+                                        <circle cx="24" cy="24" r="16" />
+                                    </svg>
+                                </div>
+                                <div class="carousel-number">03</div>
+                            </div>
+                            <div class="carousel-body">
+                                <h3 class="carousel-title">API Core</h3>
+                                <p class="carousel-desc">RESTful architectural backend with rate limiting, JWT auth, and
+                                    auto-scaling microservices orchestration.</p>
+                            </div>
+                            <div class="carousel-footer">
+                                <div class="carousel-tags">
+                                    <span>Node.js</span><span>Docker</span><span>Redis</span>
+                                </div>
+                                <div class="carousel-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-number">04</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Cloud Sync</h3>
-                        <p class="project-desc">Distributed cloud infrastructure for seamless data replication across multi-region deployments.</p>
-                        <div class="project-tags">
-                            <span>AWS</span><span>Terraform</span><span>K8s</span>
-                        </div>
-                    </div>
-                    <div class="project-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                </article>
 
-                <article class="project-card reveal" data-delay="400" data-color="rose">
-                    <div class="project-visual">
-                        <div class="project-icon">
-                            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 36l12-24 12 24"/><path d="M16 28h16"/><circle cx="24" cy="14" r="3"/></svg>
+                        <!-- Project 4 -->
+                        <div class="carousel-item" style="--position: 4" data-color="amber">
+                            <div class="carousel-top">
+                                <div class="carousel-icon">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M14 8l20 0M8 16l32 0M14 24l20 0M8 32l32 0M14 40l20 0" />
+                                    </svg>
+                                </div>
+                                <div class="carousel-number">04</div>
+                            </div>
+                            <div class="carousel-body">
+                                <h3 class="carousel-title">Cloud Sync</h3>
+                                <p class="carousel-desc">Distributed cloud infrastructure for seamless data replication
+                                    across multi-region deployments.</p>
+                            </div>
+                            <div class="carousel-footer">
+                                <div class="carousel-tags">
+                                    <span>AWS</span><span>Terraform</span><span>K8s</span>
+                                </div>
+                                <div class="carousel-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
-                        <div class="project-number">05</div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Neural Flow</h3>
-                        <p class="project-desc">AI pipeline optimization framework automating model training, evaluation, and deployment workflows.</p>
-                        <div class="project-tags">
-                            <span>PyTorch</span><span>MLflow</span><span>Airflow</span>
+
+                        <!-- Project 5 -->
+                        <div class="carousel-item" style="--position: 5" data-color="rose">
+                            <div class="carousel-top">
+                                <div class="carousel-icon">
+                                    <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 36l12-24 12 24" />
+                                        <path d="M16 28h16" />
+                                        <circle cx="24" cy="14" r="3" />
+                                    </svg>
+                                </div>
+                                <div class="carousel-number">05</div>
+                            </div>
+                            <div class="carousel-body">
+                                <h3 class="carousel-title">Neural Flow</h3>
+                                <p class="carousel-desc">AI pipeline optimization framework automating model training,
+                                    evaluation, and deployment workflows.</p>
+                            </div>
+                            <div class="carousel-footer">
+                                <div class="carousel-tags">
+                                    <span>PyTorch</span><span>MLflow</span><span>Airflow</span>
+                                </div>
+                                <div class="carousel-arrow">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="1.5">
+                                        <line x1="7" y1="17" x2="17" y2="7" />
+                                        <polyline points="7 7 17 7 17 17" />
+                                    </svg>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                    <div class="project-arrow">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-                    </div>
-                </article>
+                    <div class="carousel-reflection"></div>
+                </div>
+
+                <!-- Controls -->
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="carousel-prev" aria-label="Previous project">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="15 18 9 12 15 6" />
+                        </svg>
+                    </button>
+                    <button class="carousel-btn" id="carousel-next" aria-label="Next project">
+                        <svg viewBox="0 0 24 24">
+                            <polyline points="9 18 15 12 9 6" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Dots -->
+                <div class="carousel-dots" id="carousel-dots">
+                    <div class="carousel-dot active" data-index="0"></div>
+                    <div class="carousel-dot" data-index="1"></div>
+                    <div class="carousel-dot" data-index="2"></div>
+                    <div class="carousel-dot" data-index="3"></div>
+                    <div class="carousel-dot" data-index="4"></div>
+                </div>
             </div>
         </section>
 
@@ -312,12 +464,12 @@
                     <span class="contact-value">Sharathkumar2003.mca@email.com</span>
                     <span class="contact-arrow">→</span>
                 </a>
-                <a href="#" class="contact-link" id="linkedin-link">
+                <a href="https://www.linkedin.com/in/sharath-mamidi-536883395/" class="contact-link" id="linkedin-link">
                     <span class="contact-label">LinkedIn</span>
                     <span class="contact-value">Connect on LinkedIn</span>
                     <span class="contact-arrow">↗</span>
                 </a>
-                <a href="#" class="contact-link" id="github-link">
+                <a href="https://github.com/sharath-kumar-2003" class="contact-link" id="github-link">
                     <span class="contact-label">GitHub</span>
                     <span class="contact-value">View Repositories</span>
                     <span class="contact-arrow">↗</span>
@@ -332,4 +484,5 @@
 
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>

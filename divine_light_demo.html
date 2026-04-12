@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sunlight">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine Light — Sacred Sunlight & Moonlight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════════════════
+       DIVINE LIGHT — DUAL THEME DESIGN SYSTEM
+       Sacred Sunlight ☀ & All-Embracing Moonlight ☽
+       ═══════════════════════════════════════════════════ */
+
+    /* ── SACRED SUNLIGHT PALETTE ── */
+    [data-theme="sunlight"] {
+      --divine-primary: #C8952E;
+      --divine-primary-light: #E2B94E;
+      --divine-primary-glow: rgba(200, 149, 46, 0.35);
+      --divine-primary-subtle: rgba(200, 149, 46, 0.08);
+      --divine-primary-text: #A07520;
+
+      --bg-deep: #FAF6ED;
+      --bg-base: #FDFBF7;
+      --bg-elevated: #F7F0E3;
+      --bg-card: rgba(247, 240, 227, 0.7);
+      --bg-card-hover: rgba(247, 240, 227, 0.95);
+      --bg-nav: rgba(253, 251, 247, 0.75);
+      --bg-gradient-mid: #F3EBDA;
+
+      --text-primary: #2A2318;
+      --text-secondary: #5C4F3A;
+      --text-muted: #8B7D68;
+      --text-on-primary: #FFFDF5;
+
+      --border-subtle: rgba(200, 149, 46, 0.12);
+      --border-hover: rgba(200, 149, 46, 0.35);
+
+      --ray-color: rgba(255, 215, 120, 0.12);
+      --orb-inner: rgba(255, 235, 170, 0.65);
+      --orb-mid: rgba(255, 225, 150, 0.25);
+      --particle-color: #E2B94E;
+      --particle-glow: rgba(226, 185, 78, 0.5);
+
+      --shadow-card: 0 8px 32px rgba(160, 117, 32, 0.06);
+      --shadow-card-hover: 0 20px 60px rgba(200, 149, 46, 0.12), 0 8px 24px rgba(0,0,0,0.04);
+
+      --halo-border: rgba(200, 149, 46, 0.15);
+
+      /* Switcher */
+      --switcher-bg: rgba(200, 149, 46, 0.12);
+      --switcher-knob: linear-gradient(135deg, #E2B94E, #C8952E);
+      --switcher-glow: rgba(226, 185, 78, 0.4);
+    }
+
+    /* ── ALL-EMBRACING MOONLIGHT PALETTE ── */
+    [data-theme="moonlight"] {
+      --divine-primary: #8B9FD4;
+      --divine-primary-light: #B0C4F0;
+      --divine-primary-glow: rgba(139, 159, 212, 0.3);
+      --divine-primary-subtle: rgba(139, 159, 212, 0.08);
+      --divine-primary-text: #7A8FBF;
+
+      --bg-deep: #0C0E1A;
+      --bg-base: #10132A;
+      --bg-elevated: #181C38;
+      --bg-card: rgba(24, 28, 56, 0.7);
+      --bg-card-hover: rgba(30, 35, 68, 0.95);
+      --bg-nav: rgba(16, 19, 42, 0.8);
+      --bg-gradient-mid: #14173A;
+
+      --text-primary: #E8ECF8;
+      --text-secondary: #A0AACC;
+      --text-muted: #6B7399;
+      --text-on-primary: #0C0E1A;
+
+      --border-subtle: rgba(139, 159, 212, 0.1);
+      --border-hover: rgba(139, 159, 212, 0.3);
+
+      --ray-color: rgba(160, 180, 240, 0.06);
+      --orb-inner: rgba(180, 200, 255, 0.25);
+      --orb-mid: rgba(140, 160, 220, 0.1);
+      --particle-color: #B0C4F0;
+      --particle-glow: rgba(176, 196, 240, 0.4);
+
+      --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.2);
+      --shadow-card-hover: 0 20px 60px rgba(139, 159, 212, 0.1), 0 8px 24px rgba(0,0,0,0.15);
+
+      --halo-border: rgba(139, 159, 212, 0.1);
+
+      /* Switcher */
+      --switcher-bg: rgba(139, 159, 212, 0.12);
+      --switcher-knob: linear-gradient(135deg, #B0C4F0, #8B9FD4);
+      --switcher-glow: rgba(176, 196, 240, 0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       TRANSITION FOUNDATION
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-weight: 300;
+      overflow-x: hidden;
+      transition: background 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                  color 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Smooth transitions on theme switch for all themed elements */
+    .divine-nav, .sacred-card, .bento-card, .divine-quote,
+    .hero-cta, .btn-divine, .divine-footer, .palette-swatch {
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVINE BACKGROUND EFFECTS
+       ═══════════════════════════════════════════ */
+
+    /* Light Rays */
+    .divine-rays {
+      position: fixed;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200vw;
+      height: 200vh;
+      pointer-events: none;
+      z-index: 0;
+      background: conic-gradient(
+        from 0deg at 50% 0%,
+        transparent 0deg, var(--ray-color) 6deg, transparent 12deg,
+        transparent 28deg, var(--ray-color) 34deg, transparent 40deg,
+        transparent 58deg, var(--ray-color) 64deg, transparent 70deg,
+        transparent 95deg, var(--ray-color) 101deg, transparent 107deg,
+        transparent 130deg, var(--ray-color) 136deg, transparent 142deg,
+        transparent 165deg, var(--ray-color) 171deg, transparent 177deg,
+        transparent 200deg, var(--ray-color) 206deg, transparent 212deg,
+        transparent 238deg, var(--ray-color) 244deg, transparent 250deg,
+        transparent 275deg, var(--ray-color) 281deg, transparent 287deg,
+        transparent 310deg, var(--ray-color) 316deg, transparent 322deg,
+        transparent 345deg, var(--ray-color) 351deg, transparent 357deg
+      );
+      opacity: 0.6;
+      animation: rotateRays 150s linear infinite;
+      transition: opacity 1s ease;
+    }
+
+    @keyframes rotateRays {
+      to { transform: translateX(-50%) rotate(360deg); }
+    }
+
+    /* Celestial Orb */
+    .celestial-orb {
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--orb-inner) 0%, var(--orb-mid) 35%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulseOrb 8s ease-in-out infinite;
+      transition: background 1s ease;
+    }
+
+    @keyframes pulseOrb {
+      0%, 100% { opacity: 0.65; transform: translateX(-50%) scale(1); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+    }
+
+    /* Stars (moonlight only) */
+    .stars-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+
+    [data-theme="moonlight"] .stars-layer {
+      opacity: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: rgba(200, 215, 255, 0.7);
+      border-radius: 50%;
+      animation: twinkle ease-in-out infinite;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    /* Particles */
+    .divine-particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--particle-color);
+      box-shadow: 0 0 6px var(--particle-glow), 0 0 18px var(--particle-glow);
+      animation: floatUp linear infinite;
+      opacity: 0;
+      transition: background 0.8s ease, box-shadow 0.8s ease;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      8% { opacity: 0.7; }
+      85% { opacity: 0.5; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME SWITCHER — Sun/Moon Toggle
+       ═══════════════════════════════════════════ */
+    .theme-switcher-container {
+      position: fixed;
+      top: 50%;
+      right: 2rem;
+      transform: translateY(-50%);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .theme-switcher {
+      width: 60px;
+      height: 120px;
+      border-radius: 999px;
+      background: var(--switcher-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .theme-switcher:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 4px 30px var(--divine-primary-glow);
+    }
+
+    .switcher-knob {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--switcher-knob);
+      box-shadow: 0 2px 16px var(--switcher-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    [data-theme="moonlight"] .switcher-knob {
+      top: calc(100% - 54px);
+    }
+
+    .switcher-knob-inner {
+      transition: transform 0.6s ease;
+    }
+
+    [data-theme="moonlight"] .switcher-knob-inner {
+      transform: rotate(360deg);
+    }
+
+    .switcher-label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transition: color 0.8s ease;
+    }
+
+    /* ── Theme transition flash ── */
+    .theme-flash {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .theme-flash.active {
+      animation: flashTransition 0.8s ease forwards;
+    }
+
+    [data-theme="sunlight"] .theme-flash {
+      background: radial-gradient(circle at 90% 50%, rgba(255,235,170,0.5), transparent 60%);
+    }
+
+    [data-theme="moonlight"] .theme-flash {
+      background: radial-gradient(circle at 90% 50%, rgba(139,159,212,0.3), transparent 60%);
+    }
+
+    @keyframes flashTransition {
+      0% { opacity: 0; }
+      30% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ */
+    .divine-nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(24px);
+      background: var(--bg-nav);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-logo .logo-icon {
+      color: var(--divine-primary);
+      font-size: 1.2rem;
+      transition: transform 0.6s ease, color 0.8s ease;
+    }
+
+    [data-theme="moonlight"] .logo-icon {
+      transform: rotate(180deg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--divine-primary), var(--divine-primary-light));
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-links a:hover { color: var(--divine-primary); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ═══════════════════════════════════════════
+       HERO — The Revelation
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+
+    .hero-halo {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid var(--halo-border);
+      animation: haloSpin 25s linear infinite;
+      transition: border-color 0.8s ease;
+    }
+
+    .hero-halo:nth-child(1) { width: 420px; height: 420px; opacity: 0.4; }
+    .hero-halo:nth-child(2) { width: 580px; height: 580px; animation-duration: 35s; animation-direction: reverse; opacity: 0.25; }
+    .hero-halo:nth-child(3) { width: 750px; height: 750px; animation-duration: 50s; opacity: 0.12; }
+
+    @keyframes haloSpin { to { transform: rotate(360deg); } }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--divine-primary);
+      margin-bottom: 2rem;
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+      transition: color 0.8s ease;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 7.5vw, 6.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--divine-primary);
+      text-shadow: 0 0 50px var(--divine-primary-glow);
+      transition: color 0.8s ease, text-shadow 0.8s ease;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 1rem auto 2rem;
+      animation: fadeInUp 1s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-divider {
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--divine-primary), transparent);
+      margin: 1.5rem auto;
+      animation: fadeInUp 1s ease 0.5s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: transparent;
+      border: 1px solid var(--divine-primary);
+      color: var(--divine-primary);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      animation: fadeInUp 1s ease 0.6s forwards;
+      opacity: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--divine-primary), var(--divine-primary-light));
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+    }
+
+    .hero-cta:hover {
+      color: var(--text-on-primary);
+      border-color: var(--divine-primary-light);
+      box-shadow: 0 0 40px var(--divine-primary-glow), 0 0 80px var(--divine-primary-subtle);
+    }
+
+    .hero-cta:hover::before { opacity: 1; }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ═══════════════════════════════════════════
+       THEME TRANSITION LABEL
+       ═══════════════════════════════════════════ */
+    .theme-badge {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .theme-badge-inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.6rem 1.5rem;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--divine-primary);
+      transition: all 0.8s ease;
+    }
+
+    .theme-badge-icon {
+      font-size: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION SHARED STYLES
+       ═══════════════════════════════════════════ */
+    .section {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--divine-primary);
+      margin-bottom: 0.5rem;
+      transition: color 0.8s ease;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 300;
+      color: var(--text-primary);
+    }
+
+    .section-line {
+      width: 40px;
+      height: 1px;
+      background: var(--divine-primary);
+      margin: 1rem auto 0;
+      transition: background 0.8s ease;
+    }
+
+    /* ═══════════════════════════════════════════
+       SACRED CARDS
+       ═══════════════════════════════════════════ */
+    .sacred-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .sacred-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+    }
+
+    .sacred-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--divine-primary), transparent);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .sacred-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, var(--divine-primary-subtle) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .sacred-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card-hover);
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .sacred-card:hover::before,
+    .sacred-card:hover::after { opacity: 1; }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 8px var(--divine-primary-glow));
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .card-text {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    /* ═══════════════════════════════════════════
+       DIVINE QUOTE
+       ═══════════════════════════════════════════ */
+    .divine-quote {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-gradient-mid) 50%, var(--bg-base) 100%);
+    }
+
+    .quote-symbol {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: var(--divine-primary);
+      opacity: 0.25;
+      line-height: 1;
+      margin-bottom: -0.5rem;
+    }
+
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-secondary);
+      max-width: 680px;
+      margin: 0 auto 1rem;
+      line-height: 1.6;
+    }
+
+    .quote-author {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--divine-primary);
+    }
+
+    /* ═══════════════════════════════════════════
+       BENTO GRID
+       ═══════════════════════════════════════════ */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .bento-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card-hover);
+      background: var(--bg-card-hover);
+    }
+
+    .bento-large  { grid-column: span 8; min-height: 280px; }
+    .bento-small  { grid-column: span 4; min-height: 280px; }
+    .bento-medium { grid-column: span 6; min-height: 240px; }
+
+    .bento-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--divine-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .bento-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .bento-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      max-width: 380px;
+      line-height: 1.7;
+    }
+
+    /* Sacred geometry decoration */
+    .sacred-geometry {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 180px;
+      height: 180px;
+      opacity: 0.06;
+      color: var(--divine-primary);
+      transition: opacity 0.4s ease, color 0.8s ease;
+    }
+
+    .bento-card:hover .sacred-geometry { opacity: 0.14; }
+    .sacred-geometry svg { width: 100%; height: 100%; }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS SHOWCASE
+       ═══════════════════════════════════════════ */
+    .btn-showcase {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .btn-divine {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      border: none;
+    }
+
+    .btn-primary {
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--divine-primary), var(--divine-primary-light));
+      color: var(--text-on-primary);
+      box-shadow: 0 4px 20px var(--divine-primary-glow);
+      border-radius: 2px;
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 8px 40px var(--divine-primary-glow), 0 0 60px var(--divine-primary-subtle);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      padding: 1rem 2.5rem;
+      background: transparent;
+      color: var(--divine-primary);
+      border: 1px solid var(--border-subtle) !important;
+      border-radius: 2px;
+    }
+
+    .btn-ghost:hover {
+      background: var(--divine-primary-subtle);
+      border-color: var(--divine-primary) !important;
+    }
+
+    .btn-text {
+      padding: 0.5rem 0;
+      background: transparent;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--divine-primary) !important;
+      border-radius: 0;
+    }
+
+    .btn-text:hover { color: var(--divine-primary); }
+
+    /* ═══════════════════════════════════════════
+       COLOR PALETTE SHOWCASE
+       ═══════════════════════════════════════════ */
+    .palette-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 700px;
+      margin: 2rem auto 0;
+    }
+
+    .palette-label {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .palette-row {
+      display: flex;
+      gap: 3px;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 72px;
+    }
+
+    .palette-swatch {
+      flex: 1;
+      display: flex;
+      align-items: flex-end;
+      padding: 0.4rem 0.5rem;
+      font-size: 0.58rem;
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      cursor: default;
+    }
+
+    .palette-swatch:hover { flex: 2; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .divine-footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 4rem 2rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-text {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ═══════════════════════════════════════════
+       SCROLL REVEAL
+       ═══════════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .bento-large, .bento-small, .bento-medium {
+        grid-column: span 12;
+        min-height: 180px;
+      }
+      .nav-links { display: none; }
+      .sacred-grid { grid-template-columns: 1fr; }
+      .theme-switcher-container {
+        right: 1rem;
+        top: auto;
+        bottom: 2rem;
+        transform: none;
+      }
+      .theme-switcher { width: 50px; height: 100px; }
+      .switcher-knob { width: 40px; height: 40px; font-size: 1.1rem; }
+      [data-theme="moonlight"] .switcher-knob { top: calc(100% - 46px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════ Background Effects ════ -->
+  <div class="divine-rays"></div>
+  <div class="celestial-orb"></div>
+  <div class="stars-layer" id="starsLayer"></div>
+  <div class="divine-particles" id="particles"></div>
+  <div class="theme-flash" id="themeFlash"></div>
+
+  <!-- ════ Theme Switcher ════ -->
+  <div class="theme-switcher-container">
+    <div class="theme-switcher" id="themeSwitcher" role="button" aria-label="Toggle between sunlight and moonlight theme" tabindex="0">
+      <div class="switcher-knob">
+        <span class="switcher-knob-inner" id="switcherIcon">☀️</span>
+      </div>
+    </div>
+    <span class="switcher-label" id="switcherLabel">Sunlight</span>
+  </div>
+
+  <!-- ════ Navigation ════ -->
+  <nav class="divine-nav">
+    <div class="nav-logo">
+      <span>Divine</span>
+      <span class="logo-icon" id="logoIcon">✦</span>
+      <span>Light</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#essence">Essence</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#elements">Elements</a></li>
+      <li><a href="#palette">Palette</a></li>
+    </ul>
+  </nav>
+
+  <!-- ════ Hero ════ -->
+  <section class="hero" id="hero">
+    <div class="hero-halo"></div>
+    <div class="hero-halo"></div>
+    <div class="hero-halo"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow" id="heroEyebrow">✦ Sacred Sunlight ✦</p>
+      <h1>Where Light<br>Becomes <em>Divine</em></h1>
+      <p class="hero-subtitle" id="heroSubtitle">An exploration of celestial radiance — the sacred warmth of the sun and the embracing glow of the moon.</p>
+      <div class="hero-divider"></div>
+      <a href="#essence" class="hero-cta">
+        Enter the Light ↓
+      </a>
+    </div>
+  </section>
+
+  <!-- ════ Theme Badge ════ -->
+  <div class="theme-badge reveal">
+    <div class="theme-badge-inner" id="themeBadge">
+      <span class="theme-badge-icon" id="badgeIcon">☀️</span>
+      <span id="badgeText">Sacred Sunlight Mode</span>
+    </div>
+  </div>
+
+  <!-- ════ Essence Section ════ -->
+  <section class="section" id="essence">
+    <div class="section-header reveal">
+      <p class="section-label">✦ The Essence</p>
+      <h2 class="section-title">What Makes Light Divine</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="sacred-grid">
+      <div class="sacred-card reveal">
+        <div class="card-icon" id="cardIcon1">☀️</div>
+        <h3 class="card-title" id="cardTitle1">Celestial Warmth</h3>
+        <p class="card-text" id="cardText1">Warm golds and ivories that evoke sunlight streaming through stained glass — embracing, not harsh. The light that gives life.</p>
+      </div>
+      <div class="sacred-card reveal">
+        <div class="card-icon">✨</div>
+        <h3 class="card-title">Sacred Radiance</h3>
+        <p class="card-text">Subtle glows and halos give every element inner luminance — light emanating from within, like the soul of the design itself.</p>
+      </div>
+      <div class="sacred-card reveal">
+        <div class="card-icon" id="cardIcon3">🕊️</div>
+        <h3 class="card-title" id="cardTitle3">Ethereal Serenity</h3>
+        <p class="card-text" id="cardText3">Generous whitespace and weightless typography — the digital equivalent of a cathedral's silence or a moonlit garden's calm.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Quote ════ -->
+  <div class="divine-quote reveal" id="pillars">
+    <div class="quote-symbol">"</div>
+    <p class="quote-text" id="quoteText">And there was light — not the cold light of intellect, but the warm, golden radiance that fills spaces between moments.</p>
+    <p class="quote-author" id="quoteAuthor">— A Divine Whisper</p>
+  </div>
+
+  <!-- ════ Bento Grid ════ -->
+  <section class="section" id="elements">
+    <div class="section-header reveal">
+      <p class="section-label">✦ Design Pillars</p>
+      <h2 class="section-title">Sacred Elements</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="bento-grid">
+      <div class="bento-card bento-large reveal">
+        <p class="bento-label">Typography</p>
+        <h3 class="bento-title">Cormorant Garamond</h3>
+        <p class="bento-desc">A serif typeface carrying the weight of ancient manuscripts — elegant, timeless, divine. Paired with Inter for modern clarity.</p>
+        <div class="sacred-geometry">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <circle cx="100" cy="100" r="40" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <polygon points="100,20 180,140 20,140" fill="none" stroke="currentColor" stroke-width="0.5"/>
+            <polygon points="100,180 20,60 180,60" fill="none" stroke="currentColor" stroke-width="0.5"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="bento-card bento-small reveal">
+        <p class="bento-label" id="bentoLabel2">Light Effects</p>
+        <h3 class="bento-title" id="bentoTitle2">Halo & Rays</h3>
+        <p class="bento-desc" id="bentoDesc2">Conic gradient rays slowly rotating from above, like sunbeams descending from the heavens.</p>
+      </div>
+
+      <div class="bento-card bento-medium reveal">
+        <p class="bento-label">Texture</p>
+        <h3 class="bento-title" id="bentoTitle3">Paper & Gold Leaf</h3>
+        <p class="bento-desc" id="bentoDesc3">Warm cream backgrounds evoke aged parchment, while gold accents recall illuminated manuscripts.</p>
+      </div>
+
+      <div class="bento-card bento-medium reveal">
+        <p class="bento-label">Motion</p>
+        <h3 class="bento-title">Floating Particles</h3>
+        <p class="bento-desc" id="bentoDesc4">Golden motes drift upward like dust in a beam of light — subtle, meditative, alive.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Buttons & Palette ════ -->
+  <section class="section" id="palette">
+    <div class="section-header reveal">
+      <p class="section-label">✦ Components</p>
+      <h2 class="section-title">Divine Interactions</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="btn-showcase reveal">
+      <button class="btn-divine btn-primary" id="btnPrimary">Ascend ✦</button>
+      <button class="btn-divine btn-ghost">Contemplate</button>
+      <button class="btn-divine btn-text">Read More →</button>
+    </div>
+
+    <div class="section-header reveal" style="margin-top: 6rem;">
+      <p class="section-label">✦ Sacred Palette</p>
+      <h2 class="section-title" id="paletteTitle">The Colors of Sunlight</h2>
+      <div class="section-line"></div>
+    </div>
+
+    <div class="palette-container reveal" id="paletteContainer">
+      <!-- Sunlight Palette -->
+      <div class="palette-label" id="palSunLabel">☀ Sunlight</div>
+      <div class="palette-row" id="palSunRow">
+        <div class="palette-swatch" style="background:#2A2318;color:#F7F0E3;">Sacred</div>
+        <div class="palette-swatch" style="background:#5C4F3A;color:#F7F0E3;">Umber</div>
+        <div class="palette-swatch" style="background:#8B7D68;color:#F7F0E3;">Stone</div>
+        <div class="palette-swatch" style="background:#C8952E;color:#FFF;">Gold</div>
+        <div class="palette-swatch" style="background:#E2B94E;color:#2A2318;">Aureate</div>
+        <div class="palette-swatch" style="background:#F7F0E3;color:#2A2318;">Cream</div>
+        <div class="palette-swatch" style="background:#FDFBF7;color:#2A2318;">Celestial</div>
+      </div>
+
+      <!-- Moonlight Palette -->
+      <div class="palette-label" id="palMoonLabel">☽ Moonlight</div>
+      <div class="palette-row" id="palMoonRow">
+        <div class="palette-swatch" style="background:#0C0E1A;color:#E8ECF8;">Abyss</div>
+        <div class="palette-swatch" style="background:#10132A;color:#E8ECF8;">Void</div>
+        <div class="palette-swatch" style="background:#181C38;color:#E8ECF8;">Dusk</div>
+        <div class="palette-swatch" style="background:#6B7399;color:#FFF;">Mist</div>
+        <div class="palette-swatch" style="background:#8B9FD4;color:#0C0E1A;">Lunar</div>
+        <div class="palette-swatch" style="background:#B0C4F0;color:#0C0E1A;">Silver</div>
+        <div class="palette-swatch" style="background:#E8ECF8;color:#0C0E1A;">Ethereal</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ Footer ════ -->
+  <footer class="divine-footer">
+    <p class="footer-logo" id="footerLogo">✦ Divine Light ✦</p>
+    <p class="footer-text">Sacred Sunlight · All-Embracing Moonlight</p>
+  </footer>
+
+  <!-- ════ JavaScript ════ -->
+  <script>
+    // ══════════════════════════════
+    //  PARTICLES
+    // ══════════════════════════════
+    (function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 28; i++) {
+        const p = document.createElement('div');
+        p.classList.add('particle');
+        p.style.left = Math.random() * 100 + '%';
+        const size = Math.random() * 3.5 + 1.5;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.animationDuration = (Math.random() * 18 + 12) + 's';
+        p.style.animationDelay = (Math.random() * 18) + 's';
+        container.appendChild(p);
+      }
+    })();
+
+    // ══════════════════════════════
+    //  STARS (for moonlight)
+    // ══════════════════════════════
+    (function createStars() {
+      const layer = document.getElementById('starsLayer');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.animationDuration = (Math.random() * 4 + 2) + 's';
+        star.style.animationDelay = (Math.random() * 5) + 's';
+        layer.appendChild(star);
+      }
+    })();
+
+    // ══════════════════════════════
+    //  SCROLL REVEAL
+    // ══════════════════════════════
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ══════════════════════════════
+    //  CURSOR-FOLLOWING ORB
+    // ══════════════════════════════
+    document.addEventListener('mousemove', (e) => {
+      const orb = document.querySelector('.celestial-orb');
+      const ox = (e.clientX - window.innerWidth / 2) * 0.015;
+      const oy = (e.clientY - window.innerHeight / 2) * 0.015;
+      orb.style.transform = `translateX(calc(-50% + ${ox}px)) translateY(${oy}px)`;
+    });
+
+    // ══════════════════════════════
+    //  THEME SWITCHER
+    // ══════════════════════════════
+    const html = document.documentElement;
+    const switcher = document.getElementById('themeSwitcher');
+    const switcherIcon = document.getElementById('switcherIcon');
+    const switcherLabel = document.getElementById('switcherLabel');
+    const themeFlash = document.getElementById('themeFlash');
+
+    // Dynamic content elements
+    const heroEyebrow = document.getElementById('heroEyebrow');
+    const heroSubtitle = document.getElementById('heroSubtitle');
+    const badgeIcon = document.getElementById('badgeIcon');
+    const badgeText = document.getElementById('badgeText');
+    const logoIcon = document.getElementById('logoIcon');
+    const paletteTitle = document.getElementById('paletteTitle');
+    const quoteText = document.getElementById('quoteText');
+    const quoteAuthor = document.getElementById('quoteAuthor');
+    const btnPrimary = document.getElementById('btnPrimary');
+    const cardIcon1 = document.getElementById('cardIcon1');
+    const cardTitle1 = document.getElementById('cardTitle1');
+    const cardText1 = document.getElementById('cardText1');
+    const cardIcon3 = document.getElementById('cardIcon3');
+    const bentoTitle2 = document.getElementById('bentoTitle2');
+    const bentoDesc2 = document.getElementById('bentoDesc2');
+    const bentoTitle3 = document.getElementById('bentoTitle3');
+    const bentoDesc3 = document.getElementById('bentoDesc3');
+    const bentoDesc4 = document.getElementById('bentoDesc4');
+
+    const themeContent = {
+      sunlight: {
+        icon: '☀️',
+        label: 'Sunlight',
+        eyebrow: '✦ Sacred Sunlight ✦',
+        subtitle: 'An exploration of celestial radiance — the sacred warmth of the sun and the embracing glow of the moon.',
+        badgeIcon: '☀️',
+        badgeText: 'Sacred Sunlight Mode',
+        logoIcon: '✦',
+        paletteTitle: 'The Colors of Sunlight',
+        quote: 'And there was light — not the cold light of intellect, but the warm, golden radiance that fills spaces between moments.',
+        quoteAuthor: '— A Divine Whisper',
+        btnPrimary: 'Ascend ✦',
+        cardIcon1: '☀️',
+        cardTitle1: 'Celestial Warmth',
+        cardText1: 'Warm golds and ivories that evoke sunlight streaming through stained glass — embracing, not harsh. The light that gives life.',
+        cardIcon3: '🕊️',
+        bentoTitle2: 'Halo & Rays',
+        bentoDesc2: 'Conic gradient rays slowly rotating from above, like sunbeams descending from the heavens.',
+        bentoTitle3: 'Paper & Gold Leaf',
+        bentoDesc3: 'Warm cream backgrounds evoke aged parchment, while gold accents recall illuminated manuscripts.',
+        bentoDesc4: 'Golden motes drift upward like dust in a beam of light — subtle, meditative, alive.',
+      },
+      moonlight: {
+        icon: '🌙',
+        label: 'Moonlight',
+        eyebrow: '☽ All-Embracing Moonlight ☽',
+        subtitle: 'An exploration of lunar serenity — the silver calm that embraces all things equally in its gentle glow.',
+        badgeIcon: '🌙',
+        badgeText: 'All-Embracing Moonlight Mode',
+        logoIcon: '☽',
+        paletteTitle: 'The Colors of Moonlight',
+        quote: 'The moon does not fight — it pours its light upon all the world equally, reaching every corner without effort.',
+        quoteAuthor: '— A Lunar Meditation',
+        btnPrimary: 'Transcend ☽',
+        cardIcon1: '🌙',
+        cardTitle1: 'Lunar Embrace',
+        cardText1: 'Cool silvers and deep indigos that evoke moonlight on still water — calm, all-encompassing, and infinitely gentle.',
+        cardIcon3: '🌌',
+        bentoTitle2: 'Glow & Stars',
+        bentoDesc2: 'Radial glows and twinkling stars create the feeling of a clear night sky, vast and peaceful.',
+        bentoTitle3: 'Indigo & Silver Thread',
+        bentoDesc3: 'Deep midnight backgrounds suggest infinite depth, while silver accents gleam like moonbeams on silk.',
+        bentoDesc4: 'Silver motes drift like stardust caught in moonbeams — gentle, eternal, at peace.',
+      }
+    };
+
+    function setTheme(theme) {
+      html.setAttribute('data-theme', theme);
+      const c = themeContent[theme];
+
+      // Flash effect
+      themeFlash.classList.remove('active');
+      void themeFlash.offsetWidth; // reflow
+      themeFlash.classList.add('active');
+
+      // Update switcher
+      switcherIcon.textContent = c.icon;
+      switcherLabel.textContent = c.label;
+
+      // Update content
+      heroEyebrow.textContent = c.eyebrow;
+      heroSubtitle.textContent = c.subtitle;
+      badgeIcon.textContent = c.badgeIcon;
+      badgeText.textContent = c.badgeText;
+      logoIcon.textContent = c.logoIcon;
+      paletteTitle.textContent = c.paletteTitle;
+      quoteText.textContent = c.quote;
+      quoteAuthor.textContent = c.quoteAuthor;
+      btnPrimary.textContent = c.btnPrimary;
+      cardIcon1.textContent = c.cardIcon1;
+      cardTitle1.textContent = c.cardTitle1;
+      cardText1.textContent = c.cardText1;
+      cardIcon3.textContent = c.cardIcon3;
+      bentoTitle2.textContent = c.bentoTitle2;
+      bentoDesc2.textContent = c.bentoDesc2;
+      bentoTitle3.textContent = c.bentoTitle3;
+      bentoDesc3.textContent = c.bentoDesc3;
+      bentoDesc4.textContent = c.bentoDesc4;
+    }
+
+    switcher.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      setTheme(current === 'sunlight' ? 'moonlight' : 'sunlight');
+    });
+
+    switcher.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        switcher.click();
+      }
+    });
+
+    // Auto-detect preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('moonlight');
+    }
+  </script>
+</body>
+</html>
