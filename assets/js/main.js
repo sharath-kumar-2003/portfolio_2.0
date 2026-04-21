@@ -1,55 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* ═══════════════════════════════════════════
-       THEME SWITCHER & DYNAMIC BACKGROUND
-       ═══════════════════════════════════════════ */
-    const htmlEl = document.documentElement;
-    const themeSwitcher = document.getElementById('themeSwitcher');
-    const themeFlash = document.getElementById('themeFlash');
-    const starsLayer = document.getElementById('starsLayer');
-
-    if (starsLayer) {
-        for (let i = 0; i < 100; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            const size = Math.random() * 2 + 1;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
-            star.style.animationDelay = `${Math.random() * 5}s`;
-            starsLayer.appendChild(star);
-        }
-    }
-
-    const savedTheme = localStorage.getItem('divine-theme');
-    if (savedTheme) {
-        htmlEl.setAttribute('data-theme', savedTheme);
-    } else {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        htmlEl.setAttribute('data-theme', prefersDark ? 'moonlight' : 'sunlight');
-    }
-
-    if (themeSwitcher) {
-        themeSwitcher.addEventListener('click', () => {
-            const current = htmlEl.getAttribute('data-theme');
-            const nextTheme = current === 'sunlight' ? 'moonlight' : 'sunlight';
-            
-            if (themeFlash) {
-                themeFlash.classList.remove('active');
-                void themeFlash.offsetWidth; // trigger reflow
-                themeFlash.classList.add('active');
-            }
-            
-            htmlEl.setAttribute('data-theme', nextTheme);
-            localStorage.setItem('divine-theme', nextTheme);
-            
-            window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: nextTheme } }));
-        });
-    }
-
-    /* ═══════════════════════════════════════════
        PAGE LOADER
        ═══════════════════════════════════════════ */
     const loader = document.getElementById('loader');
@@ -455,7 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const x = (e.clientX - rect.left) / rect.width - 0.5;
             const y = (e.clientY - rect.top) / rect.height - 0.5;
             
-            card.style.transform = `perspective(800px) rotateX(${-y * 6}deg) rotateY(${x * 6}deg) translateZ(8px)`;
+            // Softer tilt for meditative feel
+            card.style.transform = `perspective(800px) rotateX(${-y * 3}deg) rotateY(${x * 3}deg) translateZ(4px)`;
             
             // Update glare position
             const glareX = ((e.clientX - rect.left) / rect.width) * 100;
@@ -476,129 +428,97 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* ═══════════════════════════════════════════
-       HERO PARTICLE CANVAS — Enhanced
+       DIVINE PARTICLES
        ═══════════════════════════════════════════ */
-    const canvas = document.getElementById('hero-canvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: -1000, y: -1000 };
+    const particlesContainer = document.getElementById('particles-container');
+    if (particlesContainer) {
+        const particleCount = 40;
 
-        const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        resize();
-        window.addEventListener('resize', resize);
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
+            // Randomize
+            const size = Math.random() * 4 + 2;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 10;
+            const duration = Math.random() * 10 + 10;
 
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.radius = Math.random() * 1.8 + 0.3;
-                this.opacity = Math.random() * 0.5 + 0.1;
-                
-                const isSunlight = document.documentElement.getAttribute('data-theme') === 'sunlight';
-                this.hue = isSunlight ? 40 + Math.random() * 15 : 225 + Math.random() * 15;
-            }
-            update() {
-                // Mouse interaction
-                const dx = this.x - mouse.x;
-                const dy = this.y - mouse.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 150) {
-                    const force = (150 - dist) / 150;
-                    this.vx += (dx / dist) * force * 0.2;
-                    this.vy += (dy / dist) * force * 0.2;
-                }
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}vw`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.animationDuration = `${duration}s`;
 
-                // Damping
-                this.vx *= 0.992;
-                this.vy *= 0.992;
-
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
+            particlesContainer.appendChild(particle);
         }
-
-        const count = Math.min(80, Math.floor(window.innerWidth / 20));
-        for (let i = 0; i < count; i++) particles.push(new Particle());
-
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            // Draw connections
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 180) {
-                        const opacity = (1 - dist / 180) * 0.12;
-                        const isSunlight = document.documentElement.getAttribute('data-theme') === 'sunlight';
-                        ctx.strokeStyle = isSunlight ? `rgba(200, 149, 46, ${opacity})` : `rgba(139, 159, 212, ${opacity})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            // Draw particles with glow
-            particles.forEach(p => {
-                // Outer glow
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius * 3, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${p.hue}, 80%, 65%, ${p.opacity * 0.08})`;
-                ctx.fill();
-                
-                // Core
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
-                ctx.fill();
-            });
-
-            requestAnimationFrame(animate);
-        };
-        
-        window.addEventListener('themeChanged', () => {
-            particles.forEach(p => p.reset());
-        });
-
-        animate();
     }
 
     /* ═══════════════════════════════════════════
-       PARALLAX DEPTH — Background Orbs
+       THEME SWITCHER LOGIC
        ═══════════════════════════════════════════ */
-    const orbs = document.querySelectorAll('.gradient-orb');
+    const htmlObj = document.documentElement;
+    const switcher = document.getElementById('theme-switcher');
+    const switcherIcon = document.getElementById('switcher-icon');
+    const switcherLabel = document.getElementById('switcher-label');
+    const themeFlash = document.getElementById('theme-flash');
+
+    if (switcher) {
+        function setTheme(theme) {
+            htmlObj.setAttribute('data-theme', theme);
+
+            // Flash effect
+            if (themeFlash) {
+                themeFlash.classList.remove('active');
+                void themeFlash.offsetWidth; // reflow
+                themeFlash.classList.add('active');
+            }
+
+            if (theme === 'sunlight') {
+                switcherIcon.textContent = '☀️';
+                switcherLabel.textContent = 'Sunlight';
+            } else {
+                switcherIcon.textContent = '🌙';
+                switcherLabel.textContent = 'Moonlight';
+            }
+            localStorage.setItem('portfolio-theme', theme);
+        }
+
+        // Load saved preference
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        if (savedTheme) {
+            htmlObj.setAttribute('data-theme', savedTheme);
+            if (savedTheme === 'moonlight') {
+                switcherIcon.textContent = '🌙';
+                switcherLabel.textContent = 'Moonlight';
+            }
+        }
+
+        switcher.addEventListener('click', () => {
+            const current = htmlObj.getAttribute('data-theme') || 'sunlight';
+            setTheme(current === 'sunlight' ? 'moonlight' : 'sunlight');
+        });
+
+        switcher.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                switcher.click();
+            }
+        });
+    }
+
+    /* ═══════════════════════════════════════════
+       LUMINOUS PARALLAX DEPTH — Celestial Orb
+       ═══════════════════════════════════════════ */
+    const orb = document.querySelector('.celestial-orb');
     
-    if (orbs.length > 0 && window.innerWidth > 768) {
+    if (orb && window.innerWidth > 768) {
         window.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 2;
             const y = (e.clientY / window.innerHeight - 0.5) * 2;
             
-            orbs.forEach((orb, i) => {
-                const depth = (i + 1) * 15;
-                orb.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
-            });
+            /* Very soft tethered movement */
+            orb.style.transform = `translate(calc(-50% + ${x * -30}px), ${y * -20}px)`;
         });
     }
 

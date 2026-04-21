@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="moonlight">
+<html lang="en" data-theme="sunlight">
 
 <head>
     <meta charset="UTF-8">
@@ -32,18 +32,23 @@
     <!-- Scroll Progress -->
     <div id="scroll-progress"></div>
 
-    <!-- Ambient Background -->
-    <div class="ambient-wrapper">
-        <div class="divine-rays"></div>
-        <div class="stars-layer" id="starsLayer"></div>
-        <div class="celestial-orb"></div>
-        <canvas id="hero-canvas"></canvas>
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
+    <!-- Theme Switcher -->
+    <div class="theme-switcher-container">
+        <div class="theme-switcher" id="theme-switcher" role="switch" aria-checked="false" tabindex="0">
+            <div class="switcher-knob">
+                <div class="switcher-knob-inner" id="switcher-icon">☀️</div>
+            </div>
+        </div>
+        <div class="switcher-label" id="switcher-label">Sunlight</div>
     </div>
+
+    <!-- Divine Ambient Background -->
+    <div class="divine-rays"></div>
+    <div class="celestial-orb"></div>
+    <div class="stars-layer"></div>
+    <div class="divine-particles" id="particles-container"></div>
+    <div class="theme-flash" id="theme-flash"></div>
     <div class="noise-texture"></div>
-    <div class="theme-flash" id="themeFlash"></div>
 
     <!-- Navigation -->
     <nav id="main-nav">
@@ -73,17 +78,6 @@
         <a href="#contact" class="mobile-link">Contact</a>
     </div>
 
-    <!-- Theme Switcher -->
-    <div class="theme-switcher-container">
-        <div class="theme-switcher" id="themeSwitcher" title="Toggle Theme">
-            <div class="theme-icons">
-                <span class="theme-icon icon-sun">☀</span>
-                <span class="theme-icon icon-moon">☽</span>
-            </div>
-            <div class="theme-knob"></div>
-        </div>
-    </div>
-
     <main>
 
         <!-- ═══════════════ HERO ═══════════════ -->
@@ -94,12 +88,11 @@
                     Available for AI & Data Roles
                 </div>
                 <h1 class="hero-title" id="hero-title">
-                    <span class="line" data-text="Engineering">Engineering</span>
-                    <span class="line dim" data-text="Intelligence_">Intelligence<span class="blink">_</span></span>
+                    <span class="line" data-text="Architecting">Architecting</span>
+                    <span class="line dim" data-text="Clarity_">Clarity<span class="blink">_</span></span>
                 </h1>
                 <p class="hero-desc">
-                    Aspiring Data Engineer turning complex raw information into scalable insights. Currently
-                    architecting my path through MCA and high-end ML systems.
+                    I build systems that see through complexity. Most impactful intelligence begins in the quiet. Specializing in advanced Data Engineering and ML architectures.
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -128,12 +121,7 @@
                 </div>
             </div>
 
-            <!-- Floating 3D Shapes -->
-            <div class="hero-shapes">
-                <div class="hero-shape shape-1"></div>
-                <div class="hero-shape shape-2"></div>
-                <div class="hero-shape shape-3"></div>
-            </div>
+
 
             <div class="hero-scroll-hint">
                 <div class="scroll-line"></div>
